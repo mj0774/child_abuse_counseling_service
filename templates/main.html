@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아동학대 위험도 평가서비스</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>아동학대위험평가서비스</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">홈</a></li>
+                        <li><a href="#about">서비스 소개</a></li>
+                        <li><a href="#contact">문의</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main">
+        <div class="container">
+            <!-- 히어로 섹션 -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">아동보호 전문 서비스</div>
+                    <h2 class="hero-title">아동학대 위험도<br>평가 시스템</h2>
+                    <p class="hero-description">
+                        체계적인 평가 도구를 통해 아동학대 위험요인을 분석하고<br>
+                        전문적인 개입 방안을 제시하는 서비스입니다.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="startAssessment()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                            평가 시작하기
+                        </button>
+                        <button class="btn btn-secondary" onclick="showInfo()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4"/>
+                                <path d="M12 8h.01"/>
+                            </svg>
+                            서비스 안내
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="visual-card">
+                        <div class="visual-item">
+                            <div class="visual-number">1</div>
+                            <span>체계적 평가</span>
+                        </div>
+                        <div class="visual-item">
+                            <div class="visual-number">2</div>
+                            <span>위험도 분석</span>
+                        </div>
+                        <div class="visual-item">
+                            <div class="visual-number">3</div>
+                            <span>결과 리포트</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 서비스 특징 -->
+            <section class="features">
+                <div class="features-header">
+                    <h3>서비스 특징</h3>
+                    <p>체계적이고 전문적인 평가 시스템</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 12l2 2 4-4"/>
+                                <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1h9l4-4"/>
+                            </svg>
+                        </div>
+                        <h4>체계적 평가</h4>
+                        <p>단계별 구조화된 질문을 통해 정확하고 객관적인 위험도를 측정합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h4>실시간 분석</h4>
+                        <p>평가 완료와 동시에 AI 기반 분석 결과를 제공합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h4>전문가 검토</h4>
+                        <p>전문가의 추가 검토와 피드백을 통해 보다 정확한 평가를 제공합니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 이용 안내 -->
+            <section class="guide">
+                <div class="guide-content">
+                    <h3>이용 안내</h3>
+                    <div class="guide-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>평가 시작</h4>
+                                <p>평가 시작하기 버튼을 클릭하여 질문에 응답합니다.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>단계별 응답</h4>
+                                <p>각 항목별로 제시되는 질문에 순차적으로 답변합니다.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>결과 확인</h4>
+                                <p>모든 평가 완료 후 위험도 분석 결과를 확인합니다.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>전문가 검토</h4>
+                                <p>필요시 전문가의 추가 검토를 요청할 수 있습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>아동학대위험평가서비스</h4>
+                    <p>아동의 안전과 보호를 위한 전문 서비스</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#privacy">개인정보처리방침</a></li>
+                        <li><a href="#terms">이용약관</a></li>
+                        <li><a href="#contact">문의하기</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 아동학대위험평가서비스. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 모달 -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>서비스 안내</h3>
+            <div class="modal-body">
+                <h4>평가 과정 안내</h4>
+                <ul>
+                    <li>각 항목별로 1단계 질문이 먼저 제시됩니다.</li>
+                    <li>답변에 따라 2~3단계 세부 질문이 추가로 나타납니다.</li>
+                    <li>해당하지 않는 항목은 '건너뛰기'를 선택할 수 있습니다.</li>
+                    <li>모든 평가 완료 후 종합 결과를 확인할 수 있습니다.</li>
+                </ul>
+                <h4>주의사항</h4>
+                <ul>
+                    <li>정확한 평가를 위해 솔직하고 정확한 답변을 부탁드립니다.</li>
+                    <li>본 서비스는 전문적인 상담이나 진단을 대체하지 않습니다.</li>
+                    <li>긴급상황 시 즉시 관련 기관에 신고해 주시기 바랍니다.</li>
+                </ul>
+                <div class="emergency-contacts">
+                    <h4>긴급연락처</h4>
+                    <p>아동학대신고전화: <strong>112</strong></p>
+                    <p>중앙아동보호전문기관: <strong>1577-1391</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

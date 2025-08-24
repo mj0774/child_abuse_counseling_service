@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아동학대 위험도 평가서비스</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/question.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- 오버레이 -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- 네비게이션 사이드바 -->
+    <div class="nav-sidebar" id="navSidebar">
+        <div class="nav-title">평가 영역</div>
+        <ul class="nav-list" id="navList">
+            <!-- 네비게이션이 동적으로 생성됩니다 -->
+        </ul>
+    </div>
+
+    <div class="assessment-container">
+        <!-- 헤더 섹션 -->
+        <div class="header-section">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="assessment-title">아동학대 위험도 평가</h1>
+            <p class="assessment-subtitle">정확한 평가를 위해 솔직하게 답변해 주세요.</p>
+            <a href="{{ url_for('home') }}"><button class="home-btn"><i class="fas fa-home"></i> 홈</button></a>
+        </div>
+
+        <!-- 진행률 섹션 -->
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-info">
+                <span class="progress-text" id="progressText">영역 0/4</span>
+                <span class="progress-percent" id="progressPercent">0%</span>
+            </div>
+        </div>
+
+        <!-- 평가 페이지들 -->
+        <div id="pagesContainer">
+            <!-- 페이지들이 동적으로 생성됩니다 -->
+        </div>
+
+        <!-- 결과 섹션 -->
+        <div class="results-section" id="resultsSection">
+            <h2 class="results-title">질의 응답 결과</h2>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th style="width: 50%">질문</th>
+                        <th style="width: 50%">답변</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTableBody"></tbody>
+            </table>
+            <div class="btn-total">
+                <button class="btn btn-secondary" id="editBtn">수정하기</button>
+                <a href="{{ url_for('result') }}"><button class="btn btn-primary" id="submitBtn">결과 제출</button></a>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/question.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전문가 피드백 - 아동학대위험평가서비스</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/feedback.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>아동학대위험평가서비스</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">홈</a></li>
+                        <li><a href="#about">서비스 소개</a></li>
+                        <li><a href="#contact">문의</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 헤더 섹션 -->
+            <div class="feedback-main">
+                <div class="feedback-header">
+                    <h1 class="feedback-title">전문가 피드백 검토</h1>
+                    <p class="feedback-subtitle">
+                        AI 평가 결과를 검토하고 전문가 의견을 제공해주세요.<br>
+                        사용자의 응답을 참고하여 점수를 조정하고 피드백을 작성할 수 있습니다.
+                    </p>
+                </div>
+
+                <!-- 통계 요약 -->
+                <div class="stats-summary">
+                    <div class="stat-item">
+                        <div class="stat-value" id="originalAverage">7.2</div>
+                        <div class="stat-label">AI 평가 평균</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="adjustedAverage">7.2</div>
+                        <div class="stat-label">수정된 평균</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalQuestions">15</div>
+                        <div class="stat-label">총 평가 항목</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI 평가 결과 및 수정 -->
+            <div class="card">
+                <h2 class="card-title">AI 평가 결과 검토 및 수정</h2>
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 120px;">대분류</th>
+                                <th style="width: 100px;">평가영역</th>
+                                <th style="width: 350px;">주요 질문</th>
+                                <th style="width: 80px; text-align: center;">AI 점수</th>
+                                <th style="width: 100px; text-align: center;">수정 점수</th>
+                                <th style="width: 100px; text-align: center;">변경사항</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviewTableBody">
+                            <!-- JavaScript로 동적 생성 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 전문가 피드백 작성 -->
+            <div class="card">
+                <h2 class="card-title">✍️ 전문가 피드백 작성</h2>
+                <div class="feedback-form">
+                    <div class="form-group">
+                        <label class="form-label" for="generalFeedback">종합 의견</label>
+                        <textarea 
+                            class="form-textarea" 
+                            id="generalFeedback" 
+                            placeholder="AI 평가 결과에 대한 전반적인 의견을 작성해주세요..."
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="riskAssessment">위험도 평가</label>
+                        <textarea 
+                            class="form-textarea" 
+                            id="riskAssessment" 
+                            placeholder="현재 위험 수준과 주의사항에 대해 설명해주세요..."
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="recommendations">권고사항</label>
+                        <textarea 
+                            class="form-textarea" 
+                            id="recommendations" 
+                            placeholder="구체적인 개입 방안과 권고사항을 작성해주세요..."
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 액션 버튼 -->
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="submitFeedback()">
+                    ✅ 피드백 제출
+                </button>
+                <button class="btn btn-secondary" onclick="saveDraft()">
+                    💾 임시저장
+                </button>
+                <!-- <button class="btn btn-secondary" onclick="goBack()">
+                    ← 돌아가기
+                </button> -->
+            </div>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/feedback.js') }}"></script>
+</body>
+</html>
