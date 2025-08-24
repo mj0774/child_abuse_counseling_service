@@ -1,0 +1,14 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+.env
+*.env
+
+models/
+checkpoints/
+*.safetensors
+*.bin
+*.pt
+*.ckpt
