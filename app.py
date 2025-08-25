@@ -80,47 +80,72 @@ def request_ai_analysis(processed_data):
 def analyze_with_ai(processed_data):
     try:
         texts, metas = [], []
-        for cat_key, cat_info in processed_data["categories"].items():
+        for cat_info in processed_data["categories"].values():
+            main_title, sub_title = map(str.strip, cat_info["title"].split(" - ", 1))
+
+            qa_list = []
             answers = []
             for qid in cat_info["questions"]:
-                qa = processed_data["answers"].get(qid)
-                if qa and qa.get("answer_text"):
-                    answers.append(qa["answer_text"])
-            if answers:
-                sub_title = cat_info["title"].split(" - ")[-1].strip()
-                joined = " ".join(answers)
+                qa = processed_data["answers"].get(qid, {})
+                q, a = qa.get("question_text", ""), qa.get("answer_text", "")
+                qa_list.append({"question": q, "answer": a})
+                if a: answers.append(a.strip())
+
+            joined = " ".join(answers) if answers else None
+            if joined:
                 texts.append(f"[TYPE] {sub_title} [A] {joined}")
-                metas.append((cat_info["title"], sub_title, joined))
+            metas.append((main_title, sub_title, qa_list, joined))
 
-        if not texts:
-            return generate_dummy_analysis(processed_data)
+        # 모델 점수 예측
+        scores = []
+        if texts:
+            inputs = tokenizer(texts, return_tensors="pt", padding=True,
+                               truncation=True, max_length=512)
+            with torch.no_grad():
+                outputs = model(**inputs)
+            logits = getattr(outputs, "logits", outputs[0])
+            scores = (torch.sigmoid(logits).view(-1) * 10).tolist()
 
-        inputs = tokenizer(texts, return_tensors="pt", padding=True, truncation=True, max_length=512)
-        with torch.no_grad():
-            outputs = model(**inputs)
-        logits = getattr(outputs, "logits", outputs[0])
-        scores = (torch.sigmoid(logits).view(-1) * 10).tolist()
+        # 결과 조립
+        results, idx, valid_scores = [], 0, []
+        for main_title, sub_title, qa_list, joined in metas:
+            score = 0.0
+            if joined:
+                score = round(scores[idx], 2)
+                valid_scores.append(score)
+                idx += 1
 
-        analysis = []
-        for (main, sub, ans), s in zip(metas, scores):
-            analysis.append({
-                "mainCategory": main.split(" - ")[0],
-                "subCategory": sub,
-                "userAnswer": ans,
-                "score": round(s, 2)
+            if score >= 8: level = "학대의심"
+            elif score >= 6: level = "상담필요"
+            elif score >= 4: level = "관찰필요"
+            else: level = "정상군"
+
+            results.append({
+                "mainCategory": main_title,
+                "subCategory": sub_title,
+                "score": score,
+                "questions": qa_list,
+                "riskLevel": level
             })
 
-        avg = sum(d["score"] for d in analysis) / len(analysis)
-        if avg >= 8: level = "학대의심"
-        elif avg >= 6: level = "상담필요"
-        elif avg >= 4: level = "관찰필요"
-        else: level = "정상군"
+        # 평균은 답변 있는 항목만 포함
+        avg = sum(valid_scores) / len(valid_scores) if valid_scores else 0.0
+        if avg >= 8: overall_level = "학대의심"
+        elif avg >= 6: overall_level = "상담필요"
+        elif avg >= 4: overall_level = "관찰필요"
+        else: overall_level = "정상군"
 
-        return {"scores": analysis, "averageScore": round(avg, 2), "riskLevel": level}
+        return {
+            "scores": results,
+            "averageScore": round(avg, 2),
+            "riskLevel": overall_level
+        }
 
     except Exception as e:
         print("오류:", e)
         return generate_dummy_analysis(processed_data)
+
+
 
 
 def process_assessment_data(data):

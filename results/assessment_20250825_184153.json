@@ -1,0 +1,834 @@
+{
+  "timestamp": "2025-08-25T18:41:53.713090",
+  "assessment": {
+    "timestamp": "2025-08-25T09:41:37.048Z",
+    "responses": {
+      "pain_1": {
+        "question": "최근에 아픈 곳이 있나요?",
+        "answer": "아파요",
+        "categoryTitle": "신체적 불편감 - 통증"
+      },
+      "pain_2": {
+        "question": "언제, 어디가 아팠나요?",
+        "answer": "어제",
+        "categoryTitle": "신체적 불편감 - 통증"
+      },
+      "pain_3": {
+        "question": "아픈 이유와 내용에 대해서 적어주세요.",
+        "answer": "아빠가 때렸어요",
+        "categoryTitle": "신체적 불편감 - 통증"
+      },
+      "injury_1": {
+        "question": "최근에 다친 적이 있나요?",
+        "answer": "네 있어요",
+        "categoryTitle": "신체적 불편감 - 신체손상"
+      },
+      "injury_2": {
+        "question": "언제, 어디를 다쳤나요?",
+        "answer": "그저께",
+        "categoryTitle": "신체적 불편감 - 신체손상"
+      },
+      "injury_3": {
+        "question": "다친 이유와 내용에 대해서 적어주세요.",
+        "answer": "엄마가 때렸어요",
+        "categoryTitle": "신체적 불편감 - 신체손상"
+      }
+    },
+    "summary": {
+      "totalQuestions": 69,
+      "answeredQuestions": 6,
+      "skippedQuestions": 63,
+      "categories": [
+        {
+          "id": "pain",
+          "title": "신체적 불편감 - 통증",
+          "totalQuestions": 3,
+          "answeredQuestions": 3,
+          "answers": [
+            {
+              "questionId": "pain_1",
+              "question": "최근에 아픈 곳이 있나요?",
+              "answer": "아파요",
+              "skipped": false
+            },
+            {
+              "questionId": "pain_2",
+              "question": "언제, 어디가 아팠나요?",
+              "answer": "어제",
+              "skipped": false
+            },
+            {
+              "questionId": "pain_3",
+              "question": "아픈 이유와 내용에 대해서 적어주세요.",
+              "answer": "아빠가 때렸어요",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "id": "injury",
+          "title": "신체적 불편감 - 신체손상",
+          "totalQuestions": 3,
+          "answeredQuestions": 3,
+          "answers": [
+            {
+              "questionId": "injury_1",
+              "question": "최근에 다친 적이 있나요?",
+              "answer": "네 있어요",
+              "skipped": false
+            },
+            {
+              "questionId": "injury_2",
+              "question": "언제, 어디를 다쳤나요?",
+              "answer": "그저께",
+              "skipped": false
+            },
+            {
+              "questionId": "injury_3",
+              "question": "다친 이유와 내용에 대해서 적어주세요.",
+              "answer": "엄마가 때렸어요",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "id": "joy",
+          "title": "기분문제 - 즐거움",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "joy_1",
+              "question": "무엇을 할 때 즐겁나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "joy_2",
+              "question": "어떤 점이 즐겁나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "joy_3",
+              "question": "즐겁지 못한 이유와 내용에 대해서 적어주세요.",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "anger",
+          "title": "기분문제 - 분노/짜증",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "anger_1",
+              "question": "최근 일주일 동안 짜증이나 화가 난 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "anger_2",
+              "question": "그런 일이 자주 일어나나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "anger_3",
+              "question": "짜증이나 화가 났을 때 어떻게 푸는지 적어주세요.",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "sleep",
+          "title": "자율신경계 - 수면",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "sleep_1",
+              "question": "보통 몇 시에 자고 몇 시에 일어나나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "sleep_2",
+              "question": "아침에 일어나면 몸 상태는 어때요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "sleep_3",
+              "question": "평소에 잠들기 힘들거나 중간에 깨나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "father",
+          "title": "대인관계 - 아버지",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "father_1",
+              "question": "평소 아빠는 어떤 표정을 자주 짓나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "father_2",
+              "question": "아빠가 왜 그런 표정을 짓는 것 같나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "father_3",
+              "question": "그 표정을 볼 때 기분이 어떤가요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "mother",
+          "title": "대인관계 - 어머니",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "mother_1",
+              "question": "평소 엄마는 어떤 표정을 자주 짓나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "mother_2",
+              "question": "엄마가 왜 그런 표정을 짓는 것 같나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "mother_3",
+              "question": "그 표정을 볼 때 기분이 어떤가요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "caregiver",
+          "title": "대인관계 - 기타보호자",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "caregiver_1",
+              "question": "부모님 외에 나를 돌봐주시는 어른이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "caregiver_2",
+              "question": "그 분은 어떤 표정을 자주 짓나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "caregiver_3",
+              "question": "그런 표정을 볼 때 기분이 어떤가요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "siblings",
+          "title": "대인관계 - 형제/자매",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "siblings_1",
+              "question": "형제 자매가 있나요? 있다면 몇 명인가요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "siblings_2",
+              "question": "사이가 어때요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "siblings_3",
+              "question": "부모님이 차별하는 것 같나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "friends",
+          "title": "대인관계 - 친구",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "friends_1",
+              "question": "친구들이랑 주로 뭐 하고 놀아요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "friends_2",
+              "question": "주로 몇 명이서 놀아요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "friends_3",
+              "question": "친구들과 사이가 어떤가요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "teacher",
+          "title": "대인관계 - 교사",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "teacher_1",
+              "question": "담임선생님은 어떤가요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "teacher_2",
+              "question": "어떤 점이 좋은가요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "teacher_3",
+              "question": "차별하거나 불편함을 느끼진 않나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "worry",
+          "title": "기본생활 - 걱정",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "worry_1",
+              "question": "요즘 큰 걱정거리가 무엇인가요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "worry_2",
+              "question": "그런 걱정을 하는 이유는 무엇인가요? 그리고 어떤 점이 걱정이 되나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "worry_3",
+              "question": "걱정때문에 불편함을 느끼나요? 있다면 몇 번 정도인가요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "happiness",
+          "title": "기본생활 - 행복",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "happiness_1",
+              "question": "요즘 행복하다고 느끼나요? 불행하다고 느끼나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "happiness_2",
+              "question": "어떤 점에서 그렇게 느끼나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "happiness_3",
+              "question": "어떻게하면 행복해질 수 있을까요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "future",
+          "title": "기본생활 - 미래/진로",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "future_1",
+              "question": "커서 어떤 사람이 되고 싶나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "future_2",
+              "question": "되고 싶은 이유가 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "future_3",
+              "question": "해보고 싶은 일이 있나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "neglect",
+          "title": "학대여부 - 방임",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "neglect_1",
+              "question": "집에서 주로 나를 돌봐주는 어른이 누구인가요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "neglect_2",
+              "question": "배가 고픈데 먹을 게 없어서 굶은 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "neglect_3",
+              "question": "아픈 곳이 있는데 혼자 있던 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "emotional_abuse",
+          "title": "학대여부 - 정서학대",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "emotional_abuse_1",
+              "question": "부모님이나 선생님 때문에 슬프거나 화난 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "emotional_abuse_2",
+              "question": "내가 무엇을 하려고하면 무조건 안 된다고 하거나 하기 싫은 일을 시킨 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "emotional_abuse_3",
+              "question": "어른들이 어디에 가두고 못 나오게 한 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "physical_abuse",
+          "title": "학대여부 - 신체학대",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "physical_abuse_1",
+              "question": "주위 어른들 중 때리는 사람이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "physical_abuse_2",
+              "question": "주로 혼날 땐 어떻게 혼나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "physical_abuse_3",
+              "question": "어느 부위를 맞았나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "sexual_abuse",
+          "title": "학대여부 - 성학대",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "sexual_abuse_1",
+              "question": "내가 원하지 않는데 누군가가 내 몸을 만지거나 보여달라고 한 적 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "sexual_abuse_2",
+              "question": "중요한 신체 부위를 사진이나 영상으로 찍어 누구에게 보내거나 인터넷에 올린 적 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "sexual_abuse_3",
+              "question": "내가 싫다고 말했는데도 계속해서 연락하거나 따라다니는 사람이 있나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "domestic_violence",
+          "title": "응급 - 가정폭력",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "domestic_violence_1",
+              "question": "집에서 어른들끼리 소리 지르면서 싸우는 걸 듣거나 본 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "domestic_violence_2",
+              "question": "누가 어떻게 싸웠었나요? 얼마나 자주 그런 일이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "domestic_violence_3",
+              "question": "어른들끼리 싸우면서 나한테 화풀이한 적이 있다면 어떤 일이 있었는지 적어주세요.",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "school_violence",
+          "title": "응급 - 학교폭력",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "school_violence_1",
+              "question": "친구들이 나를 자주 놀리거나 괴롭힌다고 느낀 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "school_violence_2",
+              "question": "어떻게 놀리거나 괴롭혔는지 적어주세요.",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "school_violence_3",
+              "question": "친구들이 놀리거나 괴롭힐 때 어떤 기분이 들었나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "self_harm_suicide",
+          "title": "응급 - 자해/자살",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "self_harm_suicide_1",
+              "question": "어떨 때 마음이 복잡하거나 힘든가요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "self_harm_suicide_2",
+              "question": "안 좋은 기억 때문에 괴로워서 스스로를 해치고 싶다 생각해 본 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "self_harm_suicide_3",
+              "question": "죽기 위한 계획을 구체적으로 세워 본 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "trauma",
+          "title": "응급 - 트라우마",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "trauma_1",
+              "question": "잠잘 때 주로 어떤 꿈을 꾸나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "trauma_2",
+              "question": "생각하고 싶지 않은데도 자꾸 안 좋은 기억이 떠오른 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "trauma_3",
+              "question": "꿈을 꾸고 일어나면 몸 상태가 어떤가요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "runaway",
+          "title": "응급 - 가출",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "runaway_1",
+              "question": "부모님의 허락 없이 또는 말도 없이 오랫동안 집에서 나와 있었던 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "runaway_2",
+              "question": "친한 친구 중 가출한 친구가 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "runaway_3",
+              "question": "친구 따라서 가출하고 싶다고 생각한 적 있어?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "analysis": {
+    "scores": [
+      {
+        "mainCategory": "신체적 불편감",
+        "subCategory": "통증",
+        "score": 5.32,
+        "questions": [
+          {
+            "question": "최근에 아픈 곳이 있나요?",
+            "answer": "아파요"
+          },
+          {
+            "question": "언제, 어디가 아팠나요?",
+            "answer": "어제"
+          },
+          {
+            "question": "아픈 이유와 내용에 대해서 적어주세요.",
+            "answer": "아빠가 때렸어요"
+          }
+        ],
+        "riskLevel": "관찰필요"
+      },
+      {
+        "mainCategory": "신체적 불편감",
+        "subCategory": "신체손상",
+        "score": 9.99,
+        "questions": [
+          {
+            "question": "최근에 다친 적이 있나요?",
+            "answer": "네 있어요"
+          },
+          {
+            "question": "언제, 어디를 다쳤나요?",
+            "answer": "그저께"
+          },
+          {
+            "question": "다친 이유와 내용에 대해서 적어주세요.",
+            "answer": "엄마가 때렸어요"
+          }
+        ],
+        "riskLevel": "학대의심"
+      },
+      {
+        "mainCategory": "기분문제",
+        "subCategory": "즐거움",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "기분문제",
+        "subCategory": "분노/짜증",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "자율신경계",
+        "subCategory": "수면",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "대인관계",
+        "subCategory": "아버지",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "대인관계",
+        "subCategory": "어머니",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "대인관계",
+        "subCategory": "기타보호자",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "대인관계",
+        "subCategory": "형제/자매",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "대인관계",
+        "subCategory": "친구",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "대인관계",
+        "subCategory": "교사",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "기본생활",
+        "subCategory": "걱정",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "기본생활",
+        "subCategory": "행복",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "기본생활",
+        "subCategory": "미래/진로",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "학대여부",
+        "subCategory": "방임",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "학대여부",
+        "subCategory": "정서학대",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "학대여부",
+        "subCategory": "신체학대",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "학대여부",
+        "subCategory": "성학대",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "응급",
+        "subCategory": "가정폭력",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "응급",
+        "subCategory": "학교폭력",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "응급",
+        "subCategory": "자해/자살",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "응급",
+        "subCategory": "트라우마",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      },
+      {
+        "mainCategory": "응급",
+        "subCategory": "가출",
+        "score": 0.0,
+        "questions": [],
+        "riskLevel": "정상군"
+      }
+    ]
+  }
+}

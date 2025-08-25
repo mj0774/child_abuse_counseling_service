@@ -98,8 +98,18 @@ const createRadarChart = (data) => {
         return;
     }
 
-    const labels = data.map(item => item.subCategory);
-    const scores = data.map(item => item.score);
+    // const labels = data.map(item => item.subCategory);
+    const labels = [...new Set(data.map(item => item.mainCategory))]
+    // const scores = data.map(item => item.score);
+    const grouped = data.reduce((acc, d) => {
+        if (!acc[d.mainCategory]) acc[d.mainCategory] = [];
+        acc[d.mainCategory].push(d.score);
+        return acc;
+    }, {});
+
+    const scores = Object.values(grouped).map(arr =>
+        arr.reduce((a, b) => a + b, 0) / arr.length
+    );
 
     const chartData = {
         labels: labels,
@@ -156,24 +166,50 @@ const createRadarChart = (data) => {
 
 // 결과 테이블 생성
 const createResultsTable = (data) => {
+    console.log(data)
     const tbody = document.getElementById('resultsTableBody');
     if (!tbody) return;
 
     tbody.innerHTML = '';
 
-    data.forEach((item, index) => {
+    for (let i = 0; i < data.length; i++) {
+        const item = data[i];
         const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${item.mainCategory}</td>
-            <td>${item.subCategory}</td>
-            <td>${item.score.toFixed(2)}</td>
-            <td class="risk-level-cell">
-                <span class="risk-level-tag ${getRiskClass(item.score)}">${getRiskLevel(item.score)}</span>
-            </td>
-        `;
+
+        // 각 셀을 개별적으로 생성
+        const mainCategoryCell = document.createElement('td');
+        mainCategoryCell.textContent = item.mainCategory;
+
+        const subCategoryCell = document.createElement('td');
+        subCategoryCell.textContent = item.subCategory;
+
+        const questionCell = document.createElement('td');
+        
+        for (let j = 0; j < item.questions.length; j++) {
+            questionCell.textContent += item.questions[j].question + "\n"
+        }
+        questionCell.style.whiteSpace = "pre-line";
+
+        const scoreCell = document.createElement('td');
+        scoreCell.textContent = item.score.toFixed(2);
+
+        const riskCell = document.createElement('td');
+        riskCell.className = 'risk-level-cell';
+
+        const riskSpan = document.createElement('span');
+        riskSpan.className = `risk-level-tag ${getRiskClass(item.score)}`;
+        riskSpan.textContent = getRiskLevel(item.score);
+        riskCell.appendChild(riskSpan);
+
+        // 모든 셀을 행에 추가
+        row.appendChild(mainCategoryCell);
+        row.appendChild(subCategoryCell);
+        row.appendChild(questionCell);
+        row.appendChild(scoreCell);
+        row.appendChild(riskCell);
+
         tbody.appendChild(row);
-    });
+    }
 };
 
 // 필터링 기능
