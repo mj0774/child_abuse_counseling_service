@@ -461,24 +461,37 @@ const handleEdit = () => {
 };
 
 // 백엔드로 데이터 전송하는 함수 (수정됨)
+// question.js의 handleSubmit 함수
 const handleSubmit = async () => {
+    console.log('handleSubmit called');
     // 제출 버튼 비활성화 및 로딩 상태 표시
     elements.submitBtn.disabled = true;
     elements.submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 제출 중...';
 
     try {
-        // 답변 데이터를 백엔드 친화적인 형태로 변환
+        // 💡 1. undefined 또는 null 값을 가진 응답을 필터링합니다.
+        const filteredResponses = {};
+        for (const questionId in responses) {
+            if (responses[questionId] && responses[questionId].answer !== null && responses[questionId].answer !== undefined) {
+                filteredResponses[questionId] = responses[questionId];
+            }
+        }
+        
+        // 💡 2. 총 질문 수를 계산합니다.
+        const totalQuestions = categoryData.reduce((total, category) => total + category.questions.length, 0);
+
+        // 💡 3. 필터링된 데이터로 submissionData를 재구성합니다.
         const submissionData = {
             timestamp: new Date().toISOString(),
-            responses: responses,
+            responses: filteredResponses,
             summary: {
-                totalQuestions: getTotalQuestions(),
-                answeredQuestions: Object.keys(responses).length,
-                skippedQuestions: getTotalQuestions() - Object.keys(responses).length,
-                categories: getCategorySummary()
+                totalQuestions: totalQuestions,
+                answeredQuestions: Object.keys(filteredResponses).length,
+                skippedQuestions: totalQuestions - Object.keys(filteredResponses).length,
+                categories: getCategorySummary(filteredResponses)
             }
         };
-
+        
         // 플라스크 백엔드로 POST 요청
         const response = await fetch('/api/submit-assessment', {
             method: 'POST',
@@ -491,30 +504,12 @@ const handleSubmit = async () => {
         if (response.ok) {
             const result = await response.json();
             
-            // 성공 시 처리
             if (result.success) {
-                alert('평가가 성공적으로 제출되었습니다.');
-                console.log('제출 결과:', result);
+                // AI 분석 결과를 sessionStorage에 저장
+                sessionStorage.setItem('assessmentAnalysis', JSON.stringify(result.analysis));
                 
-                // AI 분석 결과가 있다면 콘솔에 출력 (개발용)
-                if (result.analysis) {
-                    console.log('AI 분석 결과:', result.analysis);
-                    
-                    // 간단한 알림으로 분석 결과 표시
-                    const analysisText = `
-분석 완료!
-
-위험도: ${result.analysis.riskLevel || '평가 중'}
-주요 발견사항: ${result.analysis.findings ? result.analysis.findings.join(', ') : '분석 중'}
-권장사항: ${result.analysis.recommendations ? result.analysis.recommendations.join(', ') : '권장사항 생성 중'}
-                    `;
-                    alert(analysisText);
-                }
-                
-                // 필요시 결과 페이지로 리다이렉트
-                if (result.redirectUrl) {
-                    window.location.href = result.redirectUrl;
-                }
+                // 결과 페이지로 리다이렉트
+                window.location.href = '/result';
             } else {
                 throw new Error(result.message || '제출 중 오류가 발생했습니다.');
             }
@@ -532,23 +527,19 @@ const handleSubmit = async () => {
     }
 };
 
-// 총 질문 수 계산
-const getTotalQuestions = () => {
-    return categoryData.reduce((total, category) => total + category.questions.length, 0);
-};
 
-// 카테고리별 요약 정보 생성
-const getCategorySummary = () => {
+// 💡 getCategorySummary 함수를 수정하여 responses를 인자로 받도록 합니다.
+const getCategorySummary = (currentResponses) => {
     return categoryData.map(category => ({
         id: category.id,
         title: category.title,
         totalQuestions: category.questions.length,
-        answeredQuestions: category.questions.filter(q => responses[q.id]).length,
+        answeredQuestions: category.questions.filter(q => currentResponses[q.id]).length,
         answers: category.questions.map(q => ({
             questionId: q.id,
             question: q.text,
-            answer: responses[q.id] ? responses[q.id].answer : null,
-            skipped: !responses[q.id]
+            answer: currentResponses[q.id] ? currentResponses[q.id].answer : null,
+            skipped: !currentResponses[q.id]
         }))
     }));
 };

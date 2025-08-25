@@ -1,315 +1,218 @@
-// 세부 평가 데이터 (두 번째 HTML 파일과 동일한 구조)
-const assessmentData = [
-    // 신체적 불편감
-    {
-        mainCategory: "신체적 불편감",
-        subCategory: "통증",
-        question: "아동이 신체적 통증을 호소하는가?",
-        score: 8
-    },
-    {
-        mainCategory: "신체적 불편감",
-        subCategory: "통증",
-        question: "아동이 통증으로 인해 활동을 제한하는가?",
-        score: 7
-    },
-    { 
-        mainCategory: "신체적 불편감",
-        subCategory: "신체손상", 
-        question: "아동에게 원인 불명의 상처나 멍이 있는가?", 
-        score: 9
-    },
-    
-    // 기분문제
-    { 
-        mainCategory: "기분문제",
-        subCategory: "즐거움", 
-        question: "아동이 일상 활동에서 즐거움을 느끼는가?", 
-        score: 6
-    },
-    { 
-        mainCategory: "기분문제",
-        subCategory: "분노/짜증", 
-        question: "아동이 과도한 분노나 짜증을 보이는가?", 
-        score: 5
-    },
-    
-    // 자율신경계
-    { 
-        mainCategory: "자율신경계",
-        subCategory: "수면", 
-        question: "아동의 수면 패턴이 안정적인가?", 
-        score: 7
-    },
-    
-    // 대인관계
-    { 
-        mainCategory: "대인관계",
-        subCategory: "어머니", 
-        question: "아동과 어머니의 애착관계는 안정적인가?", 
-        score: 6
-    },
-    { 
-        mainCategory: "대인관계",
-        subCategory: "아버지", 
-        question: "아동과 아버지의 관계는 건전한가?", 
-        score: 7
-    },
-    { 
-        mainCategory: "대인관계",
-        subCategory: "친구", 
-        question: "아동이 또래와 원만한 관계를 맺고 있는가?", 
-        score: 8
-    },
-    
-    // 기본생활
-    { 
-        mainCategory: "기본생활",
-        subCategory: "걱정", 
-        question: "아동이 과도한 걱정이나 불안을 보이는가?", 
-        score: 5
-    },
-    { 
-        mainCategory: "기본생활",
-        subCategory: "행복", 
-        question: "아동이 전반적으로 행복해 보이는가?", 
-        score: 6
-    },
-    
-    // 학대여부
-    { 
-        mainCategory: "학대여부",
-        subCategory: "방임", 
-        question: "아동의 기본적 욕구가 적절히 충족되고 있는가?", 
-        score: 8
-    },
-    { 
-        mainCategory: "학대여부",
-        subCategory: "정서학대", 
-        question: "아동에게 정서적 상처를 주는 언행이 있었는가?", 
-        score: 7
-    },
-    { 
-        mainCategory: "학대여부",
-        subCategory: "신체학대", 
-        question: "아동에게 물리적 폭력을 가한 적이 있는가?", 
-        score: 9
-    },
-    
-    // 응급
-    { 
-        mainCategory: "응급",
-        subCategory: "자해/자살", 
-        question: "아동이 자해나 자살 관련 행동을 보인 적이 있는가?", 
-        score: 10
-    },
-    { 
-        mainCategory: "응급",
-        subCategory: "트라우마", 
-        question: "아동이 트라우마 관련 증상을 보이는가?", 
-        score: 6
+// sessionStorage에서 분석 데이터를 불러와서 전역 변수에 저장
+const analysisResultString = sessionStorage.getItem('assessmentAnalysis');
+let assessmentData = [];
+let averageScore = 0;
+let riskLevel = '';
+let findings = [];
+let recommendations = [];
+
+if (analysisResultString) {
+    try {
+        const analysisResult = JSON.parse(analysisResultString);
+        console.log("서버로부터 받은 분석 데이터:", analysisResult);
+        
+        // 💡 수정: 서버에서 받은 데이터를 전역 변수에 바로 할당합니다.
+        // analysisResult 객체에 바로 scores, averageScore 등의 키가 있습니다.
+        assessmentData = analysisResult.scores || [];
+        averageScore = analysisResult.averageScore || 0;
+        riskLevel = analysisResult.riskLevel || '정상군';
+        findings = analysisResult.findings || [];
+        recommendations = analysisResult.recommendations || [];
+
+    } catch (e) {
+        console.error("분석 데이터 파싱 오류:", e);
     }
-];
+} else {
+    console.error("sessionStorage에 저장된 분석 데이터가 없습니다.");
+}
 
-let filteredData = [...assessmentData];
-
-// 평가영역별로 데이터를 그룹화하고 평균 점수를 계산하는 함수
-const getGroupedDataBySubCategory = (data) => {
-    const grouped = {};
-    
-    data.forEach(item => {
-        const key = `${item.mainCategory}-${item.subCategory}`;
-        
-        if (!grouped[key]) {
-            grouped[key] = {
-                mainCategory: item.mainCategory,
-                subCategory: item.subCategory,
-                questions: [],
-                totalScore: 0,
-                count: 0
-            };
-        }
-        
-        grouped[key].questions.push(item.question);
-        grouped[key].totalScore += item.score;
-        grouped[key].count += 1;
-    });
-    
-    // 평균 점수 계산
-    Object.keys(grouped).forEach(key => {
-        grouped[key].averageScore = grouped[key].totalScore / grouped[key].count;
-    });
-    
-    return grouped;
+// 점수에 따른 위험도 레벨 반환
+const getRiskLevel = (score) => {
+    if (score >= 10) return "응급";
+    if (score >= 8) return "학대의심";
+    if (score >= 6) return "상담필요";
+    if (score >= 4) return "관찰필요";
+    return "정상군";
 };
 
-const createRadarChart = () => {
-    const ctx = document.getElementById('radarChart').getContext('2d');
-    const categories = [...new Set(assessmentData.map(item => item.mainCategory))];
-    const scores = categories.map(category => {
-        const categoryData = assessmentData.filter(item => item.mainCategory === category);
-        return categoryData.reduce((sum, item) => sum + item.score, 0) / categoryData.length;
-    });
+// 점수에 따른 CSS 클래스 반환
+const getRiskClass = (score) => {
+    if (score >= 10) return "risk-emergency";
+    if (score >= 8) return "risk-abuse";
+    if (score >= 6) return "risk-counseling";
+    if (score >= 4) return "risk-observation";
+    return "risk-normal";
+};
+
+// 전체 점수 및 위험도 레벨 업데이트
+const updateOverallScore = (score, risk) => {
+    const overallScoreElement = document.getElementById('overallScore');
+    const riskLevelElement = document.getElementById('riskLevel');
+
+    if (overallScoreElement) {
+        overallScoreElement.textContent = score.toFixed(1);
+    }
+    if (riskLevelElement) {
+        riskLevelElement.textContent = risk;
+        riskLevelElement.className = `risk-level-tag ${getRiskClass(score)}`;
+    }
+};
+
+// 발견 내용 업데이트
+const updateFindings = (findingsList) => {
+    const findingsListElement = document.getElementById('findingsList');
+    if (findingsListElement) {
+        findingsListElement.innerHTML = '';
+        findingsList.forEach(finding => {
+            const li = document.createElement('li');
+            li.textContent = finding;
+            findingsListElement.appendChild(li);
+        });
+    }
+};
+
+// 권장사항 업데이트
+const updateRecommendations = (recommendationsList) => {
+    const recommendationsListElement = document.getElementById('recommendationsList');
+    if (recommendationsListElement) {
+        recommendationsListElement.innerHTML = '';
+        recommendationsList.forEach(recommendation => {
+            const li = document.createElement('li');
+            li.textContent = recommendation;
+            recommendationsListElement.appendChild(li);
+        });
+    }
+};
+
+// 레이더 차트 생성
+const createRadarChart = (data) => {
+    const ctx = document.getElementById('radarChart');
+    if (!ctx) {
+        console.error("캔버스 요소를 찾을 수 없습니다: #radarChart");
+        return;
+    }
+
+    // 데이터가 없는 경우 차트 숨김
+    if (data.length === 0) {
+        ctx.style.display = 'none';
+        return;
+    }
+
+    const labels = data.map(item => item.subCategory);
+    const scores = data.map(item => item.score);
+
+    const chartData = {
+        labels: labels,
+        datasets: [{
+            label: '평가 점수',
+            data: scores,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
+            pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(255, 99, 132, 1)'
+        }]
+    };
+
+    const options = {
+        scales: {
+            r: {
+                angleLines: {
+                    display: true
+                },
+                suggestedMin: 0,
+                suggestedMax: 10,
+                pointLabels: {
+                    font: {
+                        size: 12
+                    }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return `${context.dataset.label}: ${context.raw.toFixed(1)}`;
+                    }
+                }
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false
+    };
 
     new Chart(ctx, {
         type: 'radar',
-        data: {
-            labels: categories,
-            datasets: [{
-                label: '위험도 점수',
-                data: scores,
-                fill: true,
-                backgroundColor: 'rgba(17, 24, 39, 0.1)',
-                borderColor: '#111827',
-                pointBackgroundColor: '#111827',
-                pointBorderColor: '#ffffff',
-                pointHoverBackgroundColor: '#ffffff',
-                pointHoverBorderColor: '#111827',
-                borderWidth: 2,
-                pointRadius: 4,
-                pointHoverRadius: 6
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: {
-                r: {
-                    beginAtZero: true,
-                    max: 10,
-                    ticks: { stepSize: 2, font: { size: 11, family: 'Inter' }, color: '#6b7280' },
-                    grid: { color: '#e5e7eb' },
-                    angleLines: { color: '#e5e7eb' },
-                    pointLabels: { font: { size: 10, weight: '500', family: 'Inter' }, color: '#374151' }
-                }
-            }
-        }
+        data: chartData,
+        options: options
     });
 };
 
-const createResultsTable = () => {
+// 결과 테이블 생성
+const createResultsTable = (data) => {
     const tbody = document.getElementById('resultsTableBody');
     if (!tbody) return;
-    
-    let html = '';
-    
-    // 평가영역별로 평균 점수 계산
-    const subCategoryScores = {};
-    filteredData.forEach(item => {
-        const key = `${item.mainCategory}-${item.subCategory}`;
-        if (!subCategoryScores[key]) {
-            subCategoryScores[key] = {
-                totalScore: 0,
-                count: 0
-            };
-        }
-        subCategoryScores[key].totalScore += item.score;
-        subCategoryScores[key].count += 1;
+
+    tbody.innerHTML = '';
+
+    data.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${item.mainCategory}</td>
+            <td>${item.subCategory}</td>
+            <td>${item.score.toFixed(2)}</td>
+            <td class="risk-level-cell">
+                <span class="risk-level-tag ${getRiskClass(item.score)}">${getRiskLevel(item.score)}</span>
+            </td>
+        `;
+        tbody.appendChild(row);
     });
-    
-    // 평균 점수 계산
-    Object.keys(subCategoryScores).forEach(key => {
-        subCategoryScores[key].averageScore = subCategoryScores[key].totalScore / subCategoryScores[key].count;
-    });
-    
-    // 대분류별로 그룹화
-    const groupedData = {};
-    filteredData.forEach(item => {
-        if (!groupedData[item.mainCategory]) {
-            groupedData[item.mainCategory] = [];
-        }
-        groupedData[item.mainCategory].push(item);
-    });
-    
-    Object.keys(groupedData).forEach(mainCategory => {
-        const items = groupedData[mainCategory];
-        let mainCategoryRowCount = 0;
-        
-        // 같은 평가영역끼리 그룹화
-        const subCategoryGroups = {};
-        items.forEach(item => {
-            if (!subCategoryGroups[item.subCategory]) {
-                subCategoryGroups[item.subCategory] = [];
-            }
-            subCategoryGroups[item.subCategory].push(item);
-        });
-        
-        // 전체 행 수 계산 (대분류 rowspan용)
-        mainCategoryRowCount = items.length;
-        
-        let isFirstMainCategory = true;
-        
-        Object.keys(subCategoryGroups).forEach(subCategory => {
-            const subItems = subCategoryGroups[subCategory];
-            const averageScore = subCategoryScores[`${mainCategory}-${subCategory}`].averageScore;
-            
-            let scoreClass = 'score-medium';
-            if (averageScore >= 8) scoreClass = 'score-low';
-            else if (averageScore < 6) scoreClass = 'score-high';
-            
-            subItems.forEach((item, subIndex) => {
-                html += `
-                    <tr>
-                        ${isFirstMainCategory ? `<td class="main-category-cell" rowspan="${mainCategoryRowCount}">${item.mainCategory}</td>` : ''}
-                        ${subIndex === 0 ? `<td class="sub-category-cell" rowspan="${subItems.length}">${item.subCategory}</td>` : ''}
-                        <td class="question-cell">${item.question}</td>
-                        ${subIndex === 0 ? `<td class="score-cell ${scoreClass}" rowspan="${subItems.length}">${averageScore.toFixed(1)}</td>` : ''}
-                    </tr>
-                `;
-                isFirstMainCategory = false;
-            });
-        });
-    });
-    
-    tbody.innerHTML = html;
 };
 
-const updateOverallScore = () => {
-    const totalScore = assessmentData.reduce((sum, item) => sum + item.score, 0);
-    const averageScore = totalScore / assessmentData.length;
-    document.getElementById('overallScore').textContent = averageScore.toFixed(1);
-
-    const riskLevelElement = document.getElementById('riskLevel');
-    if (averageScore >= 10) {
-        riskLevelElement.textContent = '응급';
-        riskLevelElement.className = 'risk-level-badge risk-emergency';
-    } else if (averageScore >= 8) {
-        riskLevelElement.textContent = '학대의심';
-        riskLevelElement.className = 'risk-level-badge risk-suspect';
-    } else if (averageScore >= 6) {
-        riskLevelElement.textContent = '상담필요';
-        riskLevelElement.className = 'risk-level-badge risk-consult';
-    } else if (averageScore >= 4) {
-        riskLevelElement.textContent = '관찰필요';
-        riskLevelElement.className = 'risk-level-badge risk-observe';
-    } else {
-        riskLevelElement.textContent = '정상군';
-        riskLevelElement.className = 'risk-level-badge risk-low';
-    }
-};
-
-const filterResults = () => {
-    const selectedCategory = document.getElementById('categoryFilter').value;
-    
-    if (selectedCategory === '전체') {
-        filteredData = [...assessmentData];
-    } else {
+// 필터링 기능
+const filterResults = (selectedCategory) => {
+    let filteredData = assessmentData;
+    if (selectedCategory !== '전체') {
         filteredData = assessmentData.filter(item => item.mainCategory === selectedCategory);
     }
     
-    createResultsTable();
+    createResultsTable(filteredData);
+    createRadarChart(filteredData);
 };
 
-const downloadReport = () => { 
-    alert('결과 보고서를 다운로드합니다.'); 
-};
-
+// 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', () => {
-    createRadarChart();
-    createResultsTable();
-    updateOverallScore();
-    
-    // 필터
-    document.getElementById('categoryFilter').addEventListener('change', filterResults);
+    if (assessmentData.length > 0) {
+        updateOverallScore(averageScore, riskLevel);
+        updateFindings(findings);
+        updateRecommendations(recommendations);
+        createRadarChart(assessmentData);
+        createResultsTable(assessmentData);
+        
+        // 필터 이벤트 리스너 추가 (옵션이 동적으로 추가될 경우)
+        const categoryFilter = document.getElementById('categoryFilter');
+        if (categoryFilter) {
+            if (categoryFilter.options.length <= 1) {
+                const categories = [...new Set(assessmentData.map(item => item.mainCategory))];
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category;
+                    option.textContent = category;
+                    categoryFilter.appendChild(option);
+                });
+            }
+            categoryFilter.addEventListener('change', (e) => filterResults(e.target.value));
+        }
+    } else {
+        document.querySelector('.results-container').innerHTML = `
+            <p class="error-message">분석 결과를 불러오지 못했습니다. 평가를 먼저 진행해 주세요.</p>
+        `;
+    }
 });

@@ -1,0 +1,263 @@
+{
+  "timestamp": "2025-08-25T13:11:01.559609",
+  "assessment": {
+    "timestamp": "2025-08-25T04:11:00.882Z",
+    "responses": {
+      "pain_1": {
+        "question": "현재 아동이 호소하는 신체적 통증이 있나요?",
+        "answer": "f",
+        "categoryTitle": "신체적 불편감 - 통증"
+      },
+      "pain_2": {
+        "question": "통증으로 인해 일상생활에 지장이 있나요?",
+        "answer": "f",
+        "categoryTitle": "신체적 불편감 - 통증"
+      },
+      "pain_3": {
+        "question": "통증에 대한 적절한 치료나 관리를 받고 있나요?",
+        "answer": "f",
+        "categoryTitle": "신체적 불편감 - 통증"
+      },
+      "injury_1": {
+        "question": "아동에게 설명하기 어려운 상처나 멍이 발견된 적이 있나요?",
+        "answer": "d",
+        "categoryTitle": "신체적 불편감 - 신체손상"
+      },
+      "injury_2": {
+        "question": "반복적으로 발생하는 부상이나 사고가 있나요?",
+        "answer": "d",
+        "categoryTitle": "신체적 불편감 - 신체손상"
+      },
+      "injury_3": {
+        "question": "부상에 대한 아동의 설명과 실제 상처가 일치하나요?",
+        "answer": "d",
+        "categoryTitle": "신체적 불편감 - 신체손상"
+      },
+      "emotional_1": {
+        "question": "최근 아동의 기분이나 정서에 변화가 있었나요?",
+        "answer": "a",
+        "categoryTitle": "정서·행동적 문제 - 정서변화"
+      },
+      "emotional_2": {
+        "question": "아동이 평소보다 과도하게 예민하거나 민감한 반응을 보이나요?",
+        "answer": "a",
+        "categoryTitle": "정서·행동적 문제 - 정서변화"
+      },
+      "emotional_3": {
+        "question": "아동이 자주 울거나 감정 조절에 어려움을 보이나요?",
+        "answer": "a",
+        "categoryTitle": "정서·행동적 문제 - 정서변화"
+      },
+      "behavioral_1": {
+        "question": "아동의 행동 패턴에 급격한 변화가 있었나요?",
+        "answer": "d",
+        "categoryTitle": "정서·행동적 문제 - 행동변화"
+      },
+      "behavioral_2": {
+        "question": "아동이 특정 상황이나 사람을 회피하려는 행동을 보이나요?",
+        "answer": "d",
+        "categoryTitle": "정서·행동적 문제 - 행동변화"
+      },
+      "behavioral_3": {
+        "question": "아동이 나이에 맞지 않는 성적 행동이나 지식을 보이나요?",
+        "answer": "d",
+        "categoryTitle": "정서·행동적 문제 - 행동변화"
+      }
+    },
+    "summary": {
+      "totalQuestions": 12,
+      "answeredQuestions": 12,
+      "skippedQuestions": 0,
+      "categories": [
+        {
+          "id": "physical_discomfort_pain",
+          "title": "신체적 불편감 - 통증",
+          "totalQuestions": 3,
+          "answeredQuestions": 3,
+          "answers": [
+            {
+              "questionId": "pain_1",
+              "question": "현재 아동이 호소하는 신체적 통증이 있나요?",
+              "answer": "f",
+              "skipped": false
+            },
+            {
+              "questionId": "pain_2",
+              "question": "통증으로 인해 일상생활에 지장이 있나요?",
+              "answer": "f",
+              "skipped": false
+            },
+            {
+              "questionId": "pain_3",
+              "question": "통증에 대한 적절한 치료나 관리를 받고 있나요?",
+              "answer": "f",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "id": "physical_discomfort_injury",
+          "title": "신체적 불편감 - 신체손상",
+          "totalQuestions": 3,
+          "answeredQuestions": 3,
+          "answers": [
+            {
+              "questionId": "injury_1",
+              "question": "아동에게 설명하기 어려운 상처나 멍이 발견된 적이 있나요?",
+              "answer": "d",
+              "skipped": false
+            },
+            {
+              "questionId": "injury_2",
+              "question": "반복적으로 발생하는 부상이나 사고가 있나요?",
+              "answer": "d",
+              "skipped": false
+            },
+            {
+              "questionId": "injury_3",
+              "question": "부상에 대한 아동의 설명과 실제 상처가 일치하나요?",
+              "answer": "d",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "id": "emotional_behavioral_change",
+          "title": "정서·행동적 문제 - 정서변화",
+          "totalQuestions": 3,
+          "answeredQuestions": 3,
+          "answers": [
+            {
+              "questionId": "emotional_1",
+              "question": "최근 아동의 기분이나 정서에 변화가 있었나요?",
+              "answer": "a",
+              "skipped": false
+            },
+            {
+              "questionId": "emotional_2",
+              "question": "아동이 평소보다 과도하게 예민하거나 민감한 반응을 보이나요?",
+              "answer": "a",
+              "skipped": false
+            },
+            {
+              "questionId": "emotional_3",
+              "question": "아동이 자주 울거나 감정 조절에 어려움을 보이나요?",
+              "answer": "a",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "id": "emotional_behavioral_behavior",
+          "title": "정서·행동적 문제 - 행동변화",
+          "totalQuestions": 3,
+          "answeredQuestions": 3,
+          "answers": [
+            {
+              "questionId": "behavioral_1",
+              "question": "아동의 행동 패턴에 급격한 변화가 있었나요?",
+              "answer": "d",
+              "skipped": false
+            },
+            {
+              "questionId": "behavioral_2",
+              "question": "아동이 특정 상황이나 사람을 회피하려는 행동을 보이나요?",
+              "answer": "d",
+              "skipped": false
+            },
+            {
+              "questionId": "behavioral_3",
+              "question": "아동이 나이에 맞지 않는 성적 행동이나 지식을 보이나요?",
+              "answer": "d",
+              "skipped": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "analysis": {
+    "scores": [
+      {
+        "mainCategory": "신체적 불편감",
+        "subCategory": "통증",
+        "question": "현재 아동이 호소하는 신체적 통증이 있나요?",
+        "score": 5.0
+      },
+      {
+        "mainCategory": "신체적 불편감",
+        "subCategory": "통증",
+        "question": "통증으로 인해 일상생활에 지장이 있나요?",
+        "score": 5.1
+      },
+      {
+        "mainCategory": "신체적 불편감",
+        "subCategory": "통증",
+        "question": "통증에 대한 적절한 치료나 관리를 받고 있나요?",
+        "score": 5.03
+      },
+      {
+        "mainCategory": "신체적 불편감",
+        "subCategory": "신체손상",
+        "question": "아동에게 설명하기 어려운 상처나 멍이 발견된 적이 있나요?",
+        "score": 5.06
+      },
+      {
+        "mainCategory": "신체적 불편감",
+        "subCategory": "신체손상",
+        "question": "반복적으로 발생하는 부상이나 사고가 있나요?",
+        "score": 5.13
+      },
+      {
+        "mainCategory": "신체적 불편감",
+        "subCategory": "신체손상",
+        "question": "부상에 대한 아동의 설명과 실제 상처가 일치하나요?",
+        "score": 5.21
+      },
+      {
+        "mainCategory": "정서·행동적 문제",
+        "subCategory": "정서변화",
+        "question": "최근 아동의 기분이나 정서에 변화가 있었나요?",
+        "score": 5.05
+      },
+      {
+        "mainCategory": "정서·행동적 문제",
+        "subCategory": "정서변화",
+        "question": "아동이 평소보다 과도하게 예민하거나 민감한 반응을 보이나요?",
+        "score": 5.39
+      },
+      {
+        "mainCategory": "정서·행동적 문제",
+        "subCategory": "정서변화",
+        "question": "아동이 자주 울거나 감정 조절에 어려움을 보이나요?",
+        "score": 7.56
+      },
+      {
+        "mainCategory": "정서·행동적 문제",
+        "subCategory": "행동변화",
+        "question": "아동의 행동 패턴에 급격한 변화가 있었나요?",
+        "score": 5.01
+      },
+      {
+        "mainCategory": "정서·행동적 문제",
+        "subCategory": "행동변화",
+        "question": "아동이 특정 상황이나 사람을 회피하려는 행동을 보이나요?",
+        "score": 5.41
+      },
+      {
+        "mainCategory": "정서·행동적 문제",
+        "subCategory": "행동변화",
+        "question": "아동이 나이에 맞지 않는 성적 행동이나 지식을 보이나요?",
+        "score": 5.11
+      }
+    ],
+    "averageScore": 5.34,
+    "riskLevel": "관찰필요",
+    "findings": [
+      "AI 모델이 답변을 분석하여 결과를 도출했습니다."
+    ],
+    "recommendations": [
+      "모델 분석 결과를 참고하여 추가적인 상담을 고려해보세요."
+    ]
+  }
+}

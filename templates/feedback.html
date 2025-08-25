@@ -38,22 +38,6 @@
                         사용자의 응답을 참고하여 점수를 조정하고 피드백을 작성할 수 있습니다.
                     </p>
                 </div>
-
-                <!-- 통계 요약 -->
-                <div class="stats-summary">
-                    <div class="stat-item">
-                        <div class="stat-value" id="originalAverage">7.2</div>
-                        <div class="stat-label">AI 평가 평균</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="adjustedAverage">7.2</div>
-                        <div class="stat-label">수정된 평균</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="totalQuestions">15</div>
-                        <div class="stat-label">총 평가 항목</div>
-                    </div>
-                </div>
             </div>
 
             <!-- AI 평가 결과 및 수정 -->
@@ -65,10 +49,9 @@
                             <tr>
                                 <th style="width: 120px;">대분류</th>
                                 <th style="width: 100px;">평가영역</th>
-                                <th style="width: 350px;">주요 질문</th>
                                 <th style="width: 80px; text-align: center;">AI 점수</th>
                                 <th style="width: 100px; text-align: center;">수정 점수</th>
-                                <th style="width: 100px; text-align: center;">변경사항</th>
+                                <th style="width: 80px; text-align: center;" class="change-column">변경사항</th>
                             </tr>
                         </thead>
                         <tbody id="reviewTableBody">
