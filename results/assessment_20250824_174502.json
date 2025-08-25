@@ -1,0 +1,145 @@
+{
+  "timestamp": "2025-08-24T17:45:02.533606",
+  "assessment": {
+    "timestamp": "2025-08-24T08:45:02.528Z",
+    "responses": {
+      "pain_1": {
+        "question": "현재 아동이 호소하는 신체적 통증이 있나요?",
+        "answer": "1",
+        "categoryTitle": "신체적 불편감 - 통증"
+      },
+      "emotional_1": {
+        "question": "최근 아동의 기분이나 정서에 변화가 있었나요?",
+        "answer": "23",
+        "categoryTitle": "정서·행동적 문제 - 정서변화"
+      },
+      "emotional_2": {
+        "question": "아동이 평소보다 과도하게 예민하거나 민감한 반응을 보이나요?",
+        "answer": "23",
+        "categoryTitle": "정서·행동적 문제 - 정서변화"
+      }
+    },
+    "summary": {
+      "totalQuestions": 12,
+      "answeredQuestions": 3,
+      "skippedQuestions": 9,
+      "categories": [
+        {
+          "id": "physical_discomfort_pain",
+          "title": "신체적 불편감 - 통증",
+          "totalQuestions": 3,
+          "answeredQuestions": 1,
+          "answers": [
+            {
+              "questionId": "pain_1",
+              "question": "현재 아동이 호소하는 신체적 통증이 있나요?",
+              "answer": "1",
+              "skipped": false
+            },
+            {
+              "questionId": "pain_2",
+              "question": "통증으로 인해 일상생활에 지장이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "pain_3",
+              "question": "통증에 대한 적절한 치료나 관리를 받고 있나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "physical_discomfort_injury",
+          "title": "신체적 불편감 - 신체손상",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "injury_1",
+              "question": "아동에게 설명하기 어려운 상처나 멍이 발견된 적이 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "injury_2",
+              "question": "반복적으로 발생하는 부상이나 사고가 있나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "injury_3",
+              "question": "부상에 대한 아동의 설명과 실제 상처가 일치하나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "emotional_behavioral_change",
+          "title": "정서·행동적 문제 - 정서변화",
+          "totalQuestions": 3,
+          "answeredQuestions": 2,
+          "answers": [
+            {
+              "questionId": "emotional_1",
+              "question": "최근 아동의 기분이나 정서에 변화가 있었나요?",
+              "answer": "23",
+              "skipped": false
+            },
+            {
+              "questionId": "emotional_2",
+              "question": "아동이 평소보다 과도하게 예민하거나 민감한 반응을 보이나요?",
+              "answer": "23",
+              "skipped": false
+            },
+            {
+              "questionId": "emotional_3",
+              "question": "아동이 자주 울거나 감정 조절에 어려움을 보이나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        },
+        {
+          "id": "emotional_behavioral_behavior",
+          "title": "정서·행동적 문제 - 행동변화",
+          "totalQuestions": 3,
+          "answeredQuestions": 0,
+          "answers": [
+            {
+              "questionId": "behavioral_1",
+              "question": "아동의 행동 패턴에 급격한 변화가 있었나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "behavioral_2",
+              "question": "아동이 특정 상황이나 사람을 회피하려는 행동을 보이나요?",
+              "answer": null,
+              "skipped": true
+            },
+            {
+              "questionId": "behavioral_3",
+              "question": "아동이 나이에 맞지 않는 성적 행동이나 지식을 보이나요?",
+              "answer": null,
+              "skipped": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "analysis": {
+    "riskLevel": "낮음",
+    "findings": [
+      "답변이 제한적이어서 정확한 평가가 어렵습니다."
+    ],
+    "recommendations": [
+      "더 많은 질문에 답변하시면 정확한 평가가 가능합니다."
+    ],
+    "analysisDate": "2025-08-24T17:45:02.533309",
+    "note": "이는 임시 분석 결과입니다. AI 모델 연결 후 정확한 분석이 제공됩니다."
+  }
+}

@@ -80,8 +80,10 @@ def request_ai_analysis(processed_data):
 def analyze_with_ai(processed_data):
     """실제 AI 모델을 사용하여 답변의 위험도를 분석"""
     try:
+        # 질문 ID를 키로, 질문 텍스트와 답변을 값으로 갖는 딕셔너리
         answers_dict = processed_data['answers']
         
+        # 💡 수정: 질문과 답변을 결합한 텍스트 리스트를 만듭니다.
         combined_texts = [
             f"질문: {item['question_text']} 답변: {item['answer_text']}" 
             for item in answers_dict.values()
