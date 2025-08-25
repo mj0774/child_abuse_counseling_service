@@ -89,22 +89,28 @@ def analyze_with_ai(processed_data):
                 qa = processed_data["answers"].get(qid, {})
                 q, a = qa.get("question_text", ""), qa.get("answer_text", "")
                 qa_list.append({"question": q, "answer": a})
-                if a: answers.append(a.strip())
+                if a:
+                    answers.append(a.strip())
 
             joined = " ".join(answers) if answers else None
             if joined:
                 texts.append(f"[TYPE] {sub_title} [A] {joined}")
             metas.append((main_title, sub_title, qa_list, joined))
 
-        # 모델 점수 예측
+        # 모델 점수 예측 (텍스트 하나씩 넣기)
         scores = []
-        if texts:
-            inputs = tokenizer(texts, return_tensors="pt", padding=True,
+        for t in texts:
+            inputs = tokenizer(t, return_tensors="pt", padding=True,
                                truncation=True, max_length=512)
             with torch.no_grad():
-                outputs = model(**inputs)
-            logits = getattr(outputs, "logits", outputs[0])
-            scores = (torch.sigmoid(logits).view(-1) * 10).tolist()
+                # outputs = model(**inputs)
+                out = model(**inputs, return_dict=True)
+                logits = out.logits if hasattr(out, "logits") else out[0]
+                y = logits.squeeze(-1).item()
+                score = float(np.clip(y, 0, 10))
+            # logits = getattr(outputs, "logits", outputs[0])
+            # score = (torch.sigmoid(logits).view(-1).item() * 10)
+            scores.append(score)
 
         # 결과 조립
         results, idx, valid_scores = [], 0, []
@@ -144,6 +150,7 @@ def analyze_with_ai(processed_data):
     except Exception as e:
         print("오류:", e)
         return generate_dummy_analysis(processed_data)
+
 
 
 
