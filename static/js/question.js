@@ -1,85 +1,484 @@
 const categoryData = [
     {
-        id: 'physical_discomfort_pain',
+        id: 'pain',
         title: '신체적 불편감 - 통증',
         questions: [
             {
                 id: 'pain_1',
-                text: '현재 아동이 호소하는 신체적 통증이 있나요?',
-                description: '머리, 복부, 관절 등 구체적인 통증 부위와 정도를 설명해주세요'
+                text: '최근에 아픈 곳이 있나요?',
+                description: '언제, 어디가 아팠는지, 아픈 이유와 내용에 대해서 적어주세요.'
             },
             {
-                id: 'pain_2', 
-                text: '통증으로 인해 일상생활에 지장이 있나요?',
-                description: '학교생활, 놀이활동, 수면 등에 미치는 영향을 설명해주세요'
+                id: 'pain_2',
+                text: '언제, 어디가 아팠나요?',
+                description: '아픈 시기와 구체적인 부위를 자세히 설명해 주세요.'
             },
             {
                 id: 'pain_3',
-                text: '통증에 대한 적절한 치료나 관리를 받고 있나요?',
-                description: '병원 방문, 약물 복용, 관리 방법 등을 구체적으로 설명해주세요'
+                text: '아픈 이유와 내용에 대해서 적어주세요.',
+                description: '통증의 원인이나 어떤 종류의 아픔인지 설명해 주세요.'
             }
         ]
     },
     {
-        id: 'physical_discomfort_injury',
+        id: 'injury',
         title: '신체적 불편감 - 신체손상',
         questions: [
             {
                 id: 'injury_1',
-                text: '아동에게 설명하기 어려운 상처나 멍이 발견된 적이 있나요?',
-                description: '상처의 위치, 크기, 발생 경위 등을 자세히 설명해주세요'
+                text: '최근에 다친 적이 있나요?',
+                description: '언제, 어디를 다쳤는지, 다친 이유와 내용에 대해서 적어주세요.'
             },
             {
                 id: 'injury_2',
-                text: '반복적으로 발생하는 부상이나 사고가 있나요?',
-                description: '같은 부위의 반복적 손상이나 유사한 사고의 패턴을 설명해주세요'
+                text: '언제, 어디를 다쳤나요?',
+                description: '다친 시기와 구체적인 부위를 자세히 설명해 주세요.'
             },
             {
                 id: 'injury_3',
-                text: '부상에 대한 아동의 설명과 실제 상처가 일치하나요?',
-                description: '아동이 말하는 사고 경위와 상처의 양상이 맞는지 설명해주세요'
+                text: '다친 이유와 내용에 대해서 적어주세요.',
+                description: '사고 경위나 다친 과정을 구체적으로 설명해 주세요.'
             }
         ]
     },
     {
-        id: 'emotional_behavioral_change',
-        title: '정서·행동적 문제 - 정서변화',
+        id: 'joy',
+        title: '기분문제 - 즐거움',
         questions: [
             {
-                id: 'emotional_1',
-                text: '최근 아동의 기분이나 정서에 변화가 있었나요?',
-                description: '우울감, 불안감, 짜증, 위축 등의 정서적 변화를 구체적으로 설명해주세요'
+                id: 'joy_1',
+                text: '무엇을 할 때 즐겁나요?',
+                description: '즐거운 활동이나 상황에 대해 구체적으로 설명해 주세요.'
             },
             {
-                id: 'emotional_2',
-                text: '아동이 평소보다 과도하게 예민하거나 민감한 반응을 보이나요?',
-                description: '작은 자극에도 과민반응하거나 쉽게 놀라는 등의 행동을 설명해주세요'
+                id: 'joy_2',
+                text: '어떤 점이 즐겁나요?',
+                description: '그 활동의 어떤 부분에서 즐거움을 느끼는지 설명해 주세요.'
             },
             {
-                id: 'emotional_3',
-                text: '아동이 자주 울거나 감정 조절에 어려움을 보이나요?',
-                description: '감정 폭발, 지속적인 슬픔, 조절 불가능한 분노 등을 설명해주세요'
+                id: 'joy_3',
+                text: '즐겁지 못한 이유와 내용에 대해서 적어주세요.',
+                description: '즐거움을 느끼기 어려운 상황이나 이유가 있다면 설명해 주세요.'
             }
         ]
     },
     {
-        id: 'emotional_behavioral_behavior',
-        title: '정서·행동적 문제 - 행동변화', 
+        id: 'anger',
+        title: '기분문제 - 분노/짜증',
         questions: [
             {
-                id: 'behavioral_1',
-                text: '아동의 행동 패턴에 급격한 변화가 있었나요?',
-                description: '평소와 다른 행동, 퇴행, 공격성 등의 변화를 구체적으로 설명해주세요'
+                id: 'anger_1',
+                text: '최근 일주일 동안 짜증이나 화가 난 적이 있나요?',
+                description: '화가 났던 구체적인 상황을 설명해 주세요.'
             },
             {
-                id: 'behavioral_2',
-                text: '아동이 특정 상황이나 사람을 회피하려는 행동을 보이나요?',
-                description: '피하려는 상황이나 인물, 회피하는 방식 등을 설명해주세요'
+                id: 'anger_2',
+                text: '그런 일이 자주 일어나나요?',
+                description: '짜증이나 화가 나는 일이 얼마나 자주 있는지 설명해 주세요.'
             },
             {
-                id: 'behavioral_3',
-                text: '아동이 나이에 맞지 않는 성적 행동이나 지식을 보이나요?',
-                description: '부적절한 성적 언어, 행동, 또래를 넘어서는 성적 지식 등을 설명해주세요'
+                id: 'anger_3',
+                text: '짜증이나 화가 났을 때 어떻게 푸는지 적어주세요.',
+                description: '화를 풀거나 달래는 나만의 방법이 있는지 설명해 주세요.'
+            }
+        ]
+    },
+    {
+        id: 'sleep',
+        title: '자율신경계 - 수면',
+        questions: [
+            {
+                id: 'sleep_1',
+                text: '보통 몇 시에 자고 몇 시에 일어나나요?',
+                description: '평소 취침 시간과 기상 시간을 구체적으로 적어주세요.'
+            },
+            {
+                id: 'sleep_2',
+                text: '아침에 일어나면 몸 상태는 어때요?',
+                description: '잠에서 깨었을 때의 컨디션이나 기분을 설명해 주세요.'
+            },
+            {
+                id: 'sleep_3',
+                text: '평소에 잠들기 힘들거나 중간에 깨나요?',
+                description: '잠들기까지 걸리는 시간이나 밤에 자주 깨는지 설명해 주세요.'
+            }
+        ]
+    },
+    {
+        id: 'father',
+        title: '대인관계 - 아버지',
+        questions: [
+            {
+                id: 'father_1',
+                text: '평소 아빠는 어떤 표정을 자주 짓나요?',
+                description: '아버지의 평상시 표정이나 모습을 구체적으로 설명해 주세요.'
+            },
+            {
+                id: 'father_2',
+                text: '아빠가 왜 그런 표정을 짓는 것 같나요?',
+                description: '아버지가 그런 표정을 짓는 이유에 대해 생각하는 바를 적어주세요.'
+            },
+            {
+                id: 'father_3',
+                text: '그 표정을 볼 때 기분이 어떤가요?',
+                description: '아버지의 표정을 볼 때 드는 감정을 솔직하게 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'mother',
+        title: '대인관계 - 어머니',
+        questions: [
+            {
+                id: 'mother_1',
+                text: '평소 엄마는 어떤 표정을 자주 짓나요?',
+                description: '어머니의 평상시 표정이나 모습을 구체적으로 설명해 주세요.'
+            },
+            {
+                id: 'mother_2',
+                text: '엄마가 왜 그런 표정을 짓는 것 같나요?',
+                description: '어머니가 그런 표정을 짓는 이유에 대해 생각하는 바를 적어주세요.'
+            },
+            {
+                id: 'mother_3',
+                text: '그 표정을 볼 때 기분이 어떤가요?',
+                description: '어머니의 표정을 볼 때 드는 감정을 솔직하게 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'caregiver',
+        title: '대인관계 - 기타보호자',
+        questions: [
+            {
+                id: 'caregiver_1',
+                text: '부모님 외에 나를 돌봐주시는 어른이 있나요?',
+                description: '할머니, 할아버지, 이모, 삼촌 등 나를 돌봐주시는 분이 있는지 적어주세요.'
+            },
+            {
+                id: 'caregiver_2',
+                text: '그 분은 어떤 표정을 자주 짓나요?',
+                description: '그 분의 평상시 표정이나 모습을 구체적으로 설명해 주세요.'
+            },
+            {
+                id: 'caregiver_3',
+                text: '그런 표정을 볼 때 기분이 어떤가요?',
+                description: '그 분의 표정을 볼 때 드는 감정을 솔직하게 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'siblings',
+        title: '대인관계 - 형제/자매',
+        questions: [
+            {
+                id: 'siblings_1',
+                text: '형제 자매가 있나요? 있다면 몇 명인가요?',
+                description: '형, 누나, 동생이 몇 명인지 구체적으로 적어주세요.'
+            },
+            {
+                id: 'siblings_2',
+                text: '사이가 어때요?',
+                description: '형제자매와의 관계가 좋은지 나쁜지, 어떤 점에서 그런지 설명해 주세요.'
+            },
+            {
+                id: 'siblings_3',
+                text: '부모님이 차별하는 것 같나요?',
+                description: '부모님이 나와 형제자매를 다르게 대하는 것 같은지 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'friends',
+        title: '대인관계 - 친구',
+        questions: [
+            {
+                id: 'friends_1',
+                text: '친구들이랑 주로 뭐 하고 놀아요?',
+                description: '친구들과 함께 하는 놀이나 활동을 구체적으로 설명해 주세요.'
+            },
+            {
+                id: 'friends_2',
+                text: '주로 몇 명이서 놀아요?',
+                description: '보통 몇 명의 친구들과 함께 지내는지 적어주세요.'
+            },
+            {
+                id: 'friends_3',
+                text: '친구들과 사이가 어떤가요?',
+                description: '친구들과의 관계가 좋은지, 어떤 점에서 그런지 설명해 주세요.'
+            }
+        ]
+    },
+    {
+        id: 'teacher',
+        title: '대인관계 - 교사',
+        questions: [
+            {
+                id: 'teacher_1',
+                text: '담임선생님은 어떤가요?',
+                description: '담임선생님의 성격이나 평상시 모습을 설명해 주세요.'
+            },
+            {
+                id: 'teacher_2',
+                text: '어떤 점이 좋은가요?',
+                description: '선생님의 좋은 점이나 마음에 드는 점을 적어주세요.'
+            },
+            {
+                id: 'teacher_3',
+                text: '차별하거나 불편함을 느끼진 않나요?',
+                description: '선생님이 학생들을 차별하거나 불편하게 하는 일이 있는지 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'worry',
+        title: '기본생활 - 걱정',
+        questions: [
+            {
+                id: 'worry_1',
+                text: '요즘 큰 걱정거리가 무엇인가요?',
+                description: '현재 가장 걱정되는 일이나 문제를 구체적으로 적어주세요.'
+            },
+            {
+                id: 'worry_2',
+                text: '그런 걱정을 하는 이유는 무엇인가요? 그리고 어떤 점이 걱정이 되나요?',
+                description: '왜 그런 걱정을 하게 되었는지, 구체적으로 어떤 부분이 걱정인지 설명해 주세요.'
+            },
+            {
+                id: 'worry_3',
+                text: '걱정때문에 불편함을 느끼나요? 있다면 몇 번 정도인가요?',
+                description: '걱정으로 인해 일상생활에 지장이 있는지, 얼마나 자주 그런지 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'happiness',
+        title: '기본생활 - 행복',
+        questions: [
+            {
+                id: 'happiness_1',
+                text: '요즘 행복하다고 느끼나요? 불행하다고 느끼나요?',
+                description: '현재 자신의 행복 정도를 솔직하게 표현해 주세요.'
+            },
+            {
+                id: 'happiness_2',
+                text: '어떤 점에서 그렇게 느끼나요?',
+                description: '행복하거나 불행하다고 느끼는 구체적인 이유를 설명해 주세요.'
+            },
+            {
+                id: 'happiness_3',
+                text: '어떻게하면 행복해질 수 있을까요?',
+                description: '더 행복해지기 위해 필요한 것이나 하고 싶은 것을 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'future',
+        title: '기본생활 - 미래/진로',
+        questions: [
+            {
+                id: 'future_1',
+                text: '커서 어떤 사람이 되고 싶나요?',
+                description: '장래 희망이나 되고 싶은 어른의 모습을 구체적으로 적어주세요.'
+            },
+            {
+                id: 'future_2',
+                text: '되고 싶은 이유가 있나요?',
+                description: '왜 그런 사람이 되고 싶은지, 특별한 이유가 있다면 적어주세요.'
+            },
+            {
+                id: 'future_3',
+                text: '해보고 싶은 일이 있나요?',
+                description: '앞으로 도전해보고 싶은 일이나 경험하고 싶은 것을 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'neglect',
+        title: '학대여부 - 방임',
+        questions: [
+            {
+                id: 'neglect_1',
+                text: '집에서 주로 나를 돌봐주는 어른이 누구인가요?',
+                description: '일상적으로 나를 돌봐주시는 분이 누구인지 적어주세요.'
+            },
+            {
+                id: 'neglect_2',
+                text: '배가 고픈데 먹을 게 없어서 굶은 적이 있나요?',
+                description: '식사를 거르거나 굶었던 경험이 있다면 언제, 왜 그랬는지 적어주세요.'
+            },
+            {
+                id: 'neglect_3',
+                text: '아픈 곳이 있는데 혼자 있던 적이 있나요?',
+                description: '아프거나 도움이 필요할 때 어른이 없어서 혼자 있었던 적이 있는지 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'emotional_abuse',
+        title: '학대여부 - 정서학대',
+        questions: [
+            {
+                id: 'emotional_abuse_1',
+                text: '부모님이나 선생님 때문에 슬프거나 화난 적이 있나요?',
+                description: '어른들의 말이나 행동 때문에 상처받은 경험이 있다면 적어주세요.'
+            },
+            {
+                id: 'emotional_abuse_2',
+                text: '내가 무엇을 하려고하면 무조건 안 된다고 하거나 하기 싫은 일을 시킨 적이 있나요?',
+                description: '과도하게 금지당하거나 억압받은 경험이 있다면 구체적으로 적어주세요.'
+            },
+            {
+                id: 'emotional_abuse_3',
+                text: '어른들이 어디에 가두고 못 나오게 한 적이 있나요?',
+                description: '방이나 특정 장소에 갇혔던 경험이 있다면 언제, 왜 그랬는지 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'physical_abuse',
+        title: '학대여부 - 신체학대',
+        questions: [
+            {
+                id: 'physical_abuse_1',
+                text: '주위 어른들 중 때리는 사람이 있나요?',
+                description: '나를 때리는 어른이 있다면 누구인지, 어떤 상황에서 그런지 적어주세요.'
+            },
+            {
+                id: 'physical_abuse_2',
+                text: '주로 혼날 땐 어떻게 혼나요?',
+                description: '꾸중을 들을 때 어떤 방식으로 혼나는지 구체적으로 적어주세요.'
+            },
+            {
+                id: 'physical_abuse_3',
+                text: '어느 부위를 맞았나요?',
+                description: '맞은 적이 있다면 어디를 맞았는지, 얼마나 아팠는지 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'sexual_abuse',
+        title: '학대여부 - 성학대',
+        questions: [
+            {
+                id: 'sexual_abuse_1',
+                text: '내가 원하지 않는데 누군가가 내 몸을 만지거나 보여달라고 한 적 있나요?',
+                description: '불편하거나 싫었던 신체 접촉이 있었다면 언제, 누가 그랬는지 적어주세요.'
+            },
+            {
+                id: 'sexual_abuse_2',
+                text: '중요한 신체 부위를 사진이나 영상으로 찍어 누구에게 보내거나 인터넷에 올린 적 있나요?',
+                description: '나의 사진이나 영상과 관련된 불편한 경험이 있다면 적어주세요.'
+            },
+            {
+                id: 'sexual_abuse_3',
+                text: '내가 싫다고 말했는데도 계속해서 연락하거나 따라다니는 사람이 있나요?',
+                description: '거부 의사를 표현했음에도 계속 괴롭히는 사람이 있다면 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'domestic_violence',
+        title: '응급 - 가정폭력',
+        questions: [
+            {
+                id: 'domestic_violence_1',
+                text: '집에서 어른들끼리 소리 지르면서 싸우는 걸 듣거나 본 적이 있나요?',
+                description: '가족들이 싸우는 모습을 본 경험이 있다면 언제, 어떤 상황이었는지 적어주세요.'
+            },
+            {
+                id: 'domestic_violence_2',
+                text: '누가 어떻게 싸웠었나요? 얼마나 자주 그런 일이 있나요?',
+                description: '누가 누구와 어떤 방식으로 싸웠는지, 얼마나 자주 일어나는지 적어주세요.'
+            },
+            {
+                id: 'domestic_violence_3',
+                text: '어른들끼리 싸우면서 나한테 화풀이한 적이 있다면 어떤 일이 있었는지 적어주세요.',
+                description: '가족들이 싸운 후 나에게 화풀이를 한 경험이 있다면 구체적으로 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'school_violence',
+        title: '응급 - 학교폭력',
+        questions: [
+            {
+                id: 'school_violence_1',
+                text: '친구들이 나를 자주 놀리거나 괴롭힌다고 느낀 적이 있나요?',
+                description: '학교에서 친구들에게 괴롭힘을 당한 경험이 있다면 적어주세요.'
+            },
+            {
+                id: 'school_violence_2',
+                text: '어떻게 놀리거나 괴롭혔는지 적어주세요.',
+                description: '구체적으로 어떤 방식으로 괴롭힘을 당했는지 자세히 적어주세요.'
+            },
+            {
+                id: 'school_violence_3',
+                text: '친구들이 놀리거나 괴롭힐 때 어떤 기분이 들었나요?',
+                description: '괴롭힘을 당할 때의 감정이나 기분을 솔직하게 표현해 주세요.'
+            }
+        ]
+    },
+    {
+        id: 'self_harm_suicide',
+        title: '응급 - 자해/자살',
+        questions: [
+            {
+                id: 'self_harm_suicide_1',
+                text: '어떨 때 마음이 복잡하거나 힘든가요?',
+                description: '마음이 힘들어지는 상황이나 순간을 구체적으로 설명해 주세요.'
+            },
+            {
+                id: 'self_harm_suicide_2',
+                text: '안 좋은 기억 때문에 괴로워서 스스로를 해치고 싶다 생각해 본 적이 있나요?',
+                description: '자해 충동이나 생각이 든 적이 있다면 언제, 왜 그랬는지 적어주세요.'
+            },
+            {
+                id: 'self_harm_suicide_3',
+                text: '죽기 위한 계획을 구체적으로 세워 본 적이 있나요?',
+                description: '자살에 대한 구체적인 생각이나 계획을 해본 적이 있다면 적어주세요.'
+            }
+        ]
+    },
+    {
+        id: 'trauma',
+        title: '응급 - 트라우마',
+        questions: [
+            {
+                id: 'trauma_1',
+                text: '잠잘 때 주로 어떤 꿈을 꾸나요?',
+                description: '자주 꾸는 꿈이나 반복되는 꿈이 있다면 어떤 내용인지 적어주세요.'
+            },
+            {
+                id: 'trauma_2',
+                text: '생각하고 싶지 않은데도 자꾸 안 좋은 기억이 떠오른 적이 있나요?',
+                description: '원하지 않는 기억이나 생각이 자꾸 떠오르는 경험이 있다면 적어주세요.'
+            },
+            {
+                id: 'trauma_3',
+                text: '꿈을 꾸고 일어나면 몸 상태가 어떤가요?',
+                description: '악몽을 꾸거나 꿈을 꾼 후 일어날 때의 몸 상태를 설명해 주세요.'
+            }
+        ]
+    },
+    {
+        id: 'runaway',
+        title: '응급 - 가출',
+        questions: [
+            {
+                id: 'runaway_1',
+                text: '부모님의 허락 없이 또는 말도 없이 오랫동안 집에서 나와 있었던 적이 있나요?',
+                description: '가출 경험이 있다면 언제, 왜, 어디서 지냈는지 적어주세요.'
+            },
+            {
+                id: 'runaway_2',
+                text: '친한 친구 중 가출한 친구가 있나요?',
+                description: '주변 친구들 중에 가출한 친구가 있는지, 그 친구는 어떤 상황인지 적어주세요.'
+            },
+            {
+                id: 'runaway_3',
+                text: '친구 따라서 가출하고 싶다고 생각한 적 있어?',
+                description: '친구를 따라 가출하고 싶다는 생각을 해본 적이 있는지 적어주세요.'
             }
         ]
     }
@@ -216,17 +615,6 @@ const handleQuestionInput = (questionId, pageIdx, questionIdx) => {
     checkPageCompletion(pageIdx);
 };
 
-const getLastAnsweredIndex = (pageIdx) => {
-    const category = categoryData[pageIdx];
-    let lastIdx = -1;
-    category.questions.forEach((q, idx) => {
-        if (responses[q.id] && responses[q.id].answer.trim().length > 0) {
-            lastIdx = idx;
-        }
-    });
-    return lastIdx;
-};
-
 // 다음 질문 하나만 활성화 (순차적으로)
 const activateNextQuestion = (pageIdx, questionIdx) => {
     const category = categoryData[pageIdx];
@@ -242,21 +630,6 @@ const activateNextQuestion = (pageIdx, questionIdx) => {
         nextCard.classList.remove('disabled');
         nextSkipBtn.disabled = false;
     }
-};
-
-const deactivateAllNextQuestions = (pageIdx) => {
-    const category = categoryData[pageIdx];
-    category.questions.forEach((q, idx) => {
-        if (idx > 0) {
-            const input = document.getElementById(`input-${q.id}`);
-            const card = document.getElementById(`card-${q.id}`);
-            const skipBtn = document.querySelector(`#card-${q.id} .skip-question-btn`);
-            input.disabled = true;
-            card.classList.add('disabled');
-            skipBtn.disabled = true;
-            // 답변과 상태는 유지하고 비활성화만 함
-        }
-    });
 };
 
 const deactivateQuestionsAfter = (pageIdx, fromIndex) => {
@@ -315,20 +688,12 @@ const skipQuestion = (questionId, pageIdx, questionIdx) => {
     deactivateQuestionsAfter(pageIdx, questionIdx);
     
     checkPageCompletion(pageIdx);
-};
 
-const activateAllNextQuestions = (pageIdx) => {
-    const category = categoryData[pageIdx];
-    category.questions.forEach((q, idx) => {
-        if (idx > 0) {
-            const input = document.getElementById(`input-${q.id}`);
-            const card = document.getElementById(`card-${q.id}`);
-            const skipBtn = document.querySelector(`#card-${q.id} .skip-question-btn`);
-            input.disabled = false;
-            card.classList.remove('disabled');
-            skipBtn.disabled = false;
-        }
-    });
+    // 마지막 "다음 영역" 버튼으로 스크롤
+    const nextBtn = document.getElementById(`next-page-${pageIdx}`);
+    if (nextBtn) {
+        nextBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 };
 
 const showCurrentPage = () => {
@@ -352,6 +717,8 @@ const showCurrentPage = () => {
 const nextPage = (pageIdx) => {
     currentPageIndex++;
     showCurrentPage();
+    // 다음 문제로 넘어갈 때 맨 위로 스크롤
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 const skipPage = (pageIdx) => {
@@ -552,7 +919,6 @@ const getCategorySummary = () => {
         }))
     }));
 };
-
 
 const toggleNavigation = () => {
     const isOpen = elements.navSidebar.classList.contains('open');
