@@ -12,5 +12,3 @@ checkpoints/
 *.bin
 *.pt
 *.ckpt
-
-results/
