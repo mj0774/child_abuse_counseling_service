@@ -78,87 +78,48 @@ def request_ai_analysis(processed_data):
 
 
 def analyze_with_ai(processed_data):
-    """실제 AI 모델을 사용하여 답변의 위험도를 분석"""
     try:
-        # 질문 ID를 키로, 질문 텍스트와 답변을 값으로 갖는 딕셔너리
-        answers_dict = processed_data['answers']
-        
-        # 💡 수정: 질문과 답변을 결합한 텍스트 리스트를 만듭니다.
-        combined_texts = [
-            f"질문: {item['question_text']} 답변: {item['answer_text']}" 
-            for item in answers_dict.values()
-        ]
+        texts, metas = [], []
+        for cat_key, cat_info in processed_data["categories"].items():
+            answers = []
+            for qid in cat_info["questions"]:
+                qa = processed_data["answers"].get(qid)
+                if qa and qa.get("answer_text"):
+                    answers.append(qa["answer_text"])
+            if answers:
+                sub_title = cat_info["title"].split(" - ")[-1].strip()
+                joined = " ".join(answers)
+                texts.append(f"[TYPE] {sub_title} [A] {joined}")
+                metas.append((cat_info["title"], sub_title, joined))
 
-        if not combined_texts:
-            print("분석할 답변 텍스트가 없습니다. 더미 분석을 실행합니다.")
+        if not texts:
             return generate_dummy_analysis(processed_data)
 
-        # 💡 수정: combined_texts를 토크나이저에 전달합니다.
-        inputs = tokenizer(
-            combined_texts,
-            return_tensors="pt",
-            padding=True,
-            truncation=True,
-            max_length=512
-        )
-        
+        inputs = tokenizer(texts, return_tensors="pt", padding=True, truncation=True, max_length=512)
         with torch.no_grad():
             outputs = model(**inputs)
-            # 'tuple' object has no attribute 'logits' 오류 해결 -> 근데 로짓값이 계속 동일하게 나옴 
-            predicted_scores = torch.sigmoid(outputs[0]).squeeze().tolist()
-        
-        # 모델 출력이 단일 값일 경우 리스트로 변환
-        if not isinstance(predicted_scores, list):
-            predicted_scores = [predicted_scores]
+        logits = getattr(outputs, "logits", outputs[0])
+        scores = (torch.sigmoid(logits).view(-1) * 10).tolist()
 
-        analysis_scores = []
-        for i, question_id in enumerate(answers_dict.keys()):
-            # 점수를 0-100 대신 0-10으로 스케일링
-            score = 10 * predicted_scores[i]
-            
-            # processed_data에서 카테고리 정보 찾기
-            main_category = "분석 결과"
-            sub_category = "알 수 없음"
-            for category_id, category_info in processed_data['categories'].items():
-                if question_id in category_info['questions']:
-                    try:
-                        main_category = category_info['title'].split(' - ')[0].strip()
-                        sub_category = category_info['title'].split(' - ')[-1].strip()
-                    except IndexError:
-                        main_category = category_info['title']
-                    break
-
-            analysis_scores.append({
-                "mainCategory": main_category,
-                "subCategory": sub_category,
-                "question": answers_dict[question_id]['question_text'],
-                "userAnswer": answers_dict[question_id]['answer_text'], 
-                "score": round(score, 2)
+        analysis = []
+        for (main, sub, ans), s in zip(metas, scores):
+            analysis.append({
+                "mainCategory": main.split(" - ")[0],
+                "subCategory": sub,
+                "userAnswer": ans,
+                "score": round(s, 2)
             })
 
-        average_score = sum(d['score'] for d in analysis_scores) / len(analysis_scores) if analysis_scores else 0
+        avg = sum(d["score"] for d in analysis) / len(analysis)
+        if avg >= 8: level = "학대의심"
+        elif avg >= 6: level = "상담필요"
+        elif avg >= 4: level = "관찰필요"
+        else: level = "정상군"
 
-        if average_score >= 8:
-            risk_level = "학대의심"
-        elif average_score >= 6:
-            risk_level = "상담필요"
-        elif average_score >= 4:
-            risk_level = "관찰필요"
-        else:
-            risk_level = "정상군"
-        
-        findings = ["AI 모델이 답변을 분석하여 결과를 도출했습니다."]
-        recommendations = ["모델 분석 결과를 참고하여 추가적인 상담을 고려해보세요."]
-        
-        return {
-            'scores': analysis_scores,
-            'averageScore': round(average_score, 2),
-            'riskLevel': risk_level,
-            'findings': findings,
-            'recommendations': recommendations
-        }
+        return {"scores": analysis, "averageScore": round(avg, 2), "riskLevel": level}
+
     except Exception as e:
-        print(f"AI 모델 분석 중 오류 발생: {e}")
+        print("오류:", e)
         return generate_dummy_analysis(processed_data)
 
 

@@ -1,4 +1,5 @@
-Flask
+flask
 requests
 transformers
 numpy
+torch
