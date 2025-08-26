@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>평가 결과 - 아동학대위험평가서비스</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -43,9 +44,9 @@
             </p>
 
             <div class="score-summary-card">
-                <div class="overall-score" id="overallScore">7.2</div>
-                <div class="score-label">총 평균 점수 (10점 만점)</div>
-                <div class="risk-level-badge risk-medium" id="riskLevel"></div>
+                <div class="overall-score" id="overallScore"></div>
+                <div class="score-label">각 항목의 개별 점수는 하단의 평가 결과에서 확인해주세요.</div>
+                <!-- <div class="risk-level-badge risk-medium" id="riskLevel"></div> -->
             </div>
         </section>
 
@@ -106,8 +107,8 @@
 
             <section class="action-section">
                 <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="downloadReport()">결과서 다운로드</button>
-                    <a href="{{ url_for('feedback') }}"><button class="btn btn-secondary">Feedback 요청</button></a>
+                    <button class="btn btn-primary" onclick="downloadReport()"><i class="fa-regular fa-file-pdf"></i>결과서 다운로드</button>
+                    <a href="{{ url_for('feedback') }}"><button class="btn btn-secondary"><i class="fa-solid fa-user-edit"></i>Feedback 요청</button></a>
                 </div>
             </section>
         </div>

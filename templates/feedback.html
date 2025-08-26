@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>전문가 피드백 - 아동학대위험평가서비스</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/feedback.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -97,10 +98,10 @@
             <!-- 액션 버튼 -->
             <div class="action-buttons">
                 <button class="btn btn-primary" onclick="submitFeedback()">
-                    ✅ 피드백 제출
+                    <i class="fa-solid fa-check-to-slot"></i>피드백 제출
                 </button>
                 <button class="btn btn-secondary" onclick="saveDraft()">
-                    💾 임시저장
+                    <i class="fa-regular fa-bookmark"></i> 임시저장
                 </button>
                 <!-- <button class="btn btn-secondary" onclick="goBack()">
                     ← 돌아가기

@@ -14,7 +14,7 @@ if (analysisResultString) {
         // 💡 수정: 서버에서 받은 데이터를 전역 변수에 바로 할당합니다.
         // analysisResult 객체에 바로 scores, averageScore 등의 키가 있습니다.
         assessmentData = analysisResult.scores || [];
-        averageScore = analysisResult.averageScore || 0;
+        averageScore = assessmentData.reduce((sum, item) => sum + item.score, 0);
         riskLevel = analysisResult.riskLevel || '정상군';
         findings = analysisResult.findings || [];
         recommendations = analysisResult.recommendations || [];
@@ -50,7 +50,7 @@ const updateOverallScore = (score, risk) => {
     const riskLevelElement = document.getElementById('riskLevel');
 
     if (overallScoreElement) {
-        overallScoreElement.textContent = score.toFixed(1);
+        overallScoreElement.textContent = Math.round(score); // 정수 표시
     }
     if (riskLevelElement) {
         riskLevelElement.textContent = risk;

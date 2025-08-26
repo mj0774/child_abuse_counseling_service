@@ -68,18 +68,23 @@ body {
     min-height: calc(100vh - 200px);
 }
 
+/* 공통 섹션 스타일 - 모든 섹션 동일한 크기 */
+.hero, .features, .guide {
+    padding: 80px;
+    background: #fefcfb;
+    margin: 20px;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
 /* 히어로 섹션 */
 .hero {
     display: grid;
     grid-template-columns: 1fr 400px;
     gap: 80px;
     align-items: center;
-    padding: 80px;
     max-width: 1200px;
-    margin: 20px auto;
-    background-color: #fefcfb;
-    box-sizing: border-box;
-    border-radius: 20px;
+    margin: 20px;
     overflow: hidden;
 }
 
@@ -220,14 +225,6 @@ body {
 }
 
 /* 서비스 특징 */
-.features {
-    padding: 80px;
-    background: #fefcfb;
-    margin: 20px;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
 .features-header {
     text-align: center;
     margin-bottom: 64px;
@@ -296,14 +293,6 @@ body {
 }
 
 /* 이용 안내 */
-.guide {
-    padding: 80px;
-    background: #fefcfb;
-    margin: 20px;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
 .guide-content h3 {
     font-size: 36px;
     text-align: center;
@@ -539,12 +528,16 @@ body {
         height: 64px;
     }
     
+    /* 모든 섹션 동일한 모바일 패딩 및 마진 적용 */
+    .hero, .features, .guide {
+        padding: 48px 20px;
+        margin: 20px 10px;
+    }
+    
     .hero {
         grid-template-columns: 1fr;
         gap: 48px;
-        padding: 48px 20px;
         text-align: center;
-        margin: 20px 10px;
     }
     
     .hero-title {
@@ -562,11 +555,6 @@ body {
         padding: 24px;
     }
     
-    .features {
-        padding: 64px 20px;
-        margin: 20px 10px;
-    }
-    
     .features-header {
         margin-bottom: 48px;
     }
@@ -578,11 +566,6 @@ body {
     .features-grid {
         grid-template-columns: 1fr;
         gap: 24px;
-    }
-    
-    .guide {
-        padding: 64px 20px; /* 좌우 패딩 조정 */
-        margin: 20px 10px; /* 좌우 마진 조정 */
     }
     
     .guide-content h3 {
@@ -608,7 +591,8 @@ body {
         width: 95%;
         margin: 10% auto;
     }
-        .nav ul {
+        
+    .nav ul {
         gap: 24px;
     }
 
@@ -616,29 +600,16 @@ body {
         display: none;
     }
 }
+
 @media (max-width: 480px) {
-    .hero {
+    /* 모든 섹션 동일한 작은 화면 패딩 및 마진 적용 */
+    .hero, .features, .guide {
         padding: 32px 16px;
-        margin: 10px 5px;
-    }
-    
-    .features {
-        padding: 48px 16px;
-        margin: 10px 5px;
-    }
-    
-    .guide {
-        padding: 48px 16px;
         margin: 10px 5px;
     }
     
     .visual-card {
         padding: 20px;
-    }
-
-  
-    .features {
-        padding: 64px 0;
     }
     
     .features-header {
@@ -652,10 +623,6 @@ body {
     .features-grid {
         grid-template-columns: 1fr;
         gap: 24px;
-    }
-    
-    .guide {
-        padding: 64px 0;
     }
     
     .guide-content h3 {
@@ -690,11 +657,16 @@ body {
         display: none;
     }
 }
+
 @media (max-width: 1024px) and (min-width: 769px) {
+    /* 태블릿에서도 동일한 패딩 유지 */
+    .hero, .features, .guide {
+        padding: 60px 40px;
+    }
+    
     .hero {
         grid-template-columns: 1fr 300px;
         gap: 40px;
-        padding: 60px 40px;
     }
     
     .visual-card {
